@@ -87,6 +87,46 @@ namespace Pasta_La_Vista
                 throw;
             }
         }
+        public void UpdatePrices(string connectionString)
+        {
+            try
+            {
+                for (int i = 1; i < (dataGridView1.Rows.Count); i++)
+                {
+                    MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                    sqlconnection.Open();
+                    string sql = $"UPDATE `pizzak` SET feltetek_ara=(SELECT SUM(feltetek.ar) FROM `pizzak` INNER JOIN pizza_feltet ON pizzak.pizzaid = pizza_feltet.pizzaid INNER JOIN feltetek ON pizza_feltet.feltetid = feltetek.feltetid WHERE pizzak.pizzaid = {i}) WHERE pizzak.pizzaid = {i};";
+
+                    MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
+                    MySqlDataReader insertReader2;
+                    insertReader2 = insertCommand2.ExecuteReader();
+                    UpdateOrderPrices(connectionString);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+                throw;
+            }
+        }
+        public void UpdateOrderPrices(string connectionString)
+        {
+            try
+            {
+                MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                sqlconnection.Open();
+                string sql = $"UPDATE `rendelesek` INNER JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid INNER JOIN meret ON rendelesek.meretszam = meret.meretszam SET rendelesek.osszar=(pizzak.feltetek_ara+meret.ar) WHERE rendelesek.fizetve = 0;";
+
+                MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
+                MySqlDataReader insertReader2;
+                insertReader2 = insertCommand2.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+                throw;
+            }
+        }
 
         private void dataGridView2_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -119,6 +159,7 @@ namespace Pasta_La_Vista
 
                 MessageBox.Show("Sikeres pizza feltétének felvezetése!");
                 GetPizzaDatas(connectionString);
+                UpdatePrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }
@@ -127,6 +168,8 @@ namespace Pasta_La_Vista
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -158,6 +201,7 @@ namespace Pasta_La_Vista
 
                         MessageBox.Show("Sikeresen módosítottuk a Pizza feltétét!");
                         GetPizzaDatas(connectionString);
+                        UpdatePrices(connectionString);
                         insertReader2.Close();
                         sqlconnection.Close();
                         talalat = true;
@@ -195,6 +239,7 @@ namespace Pasta_La_Vista
 
                 MessageBox.Show("Sikeresen töröltük a feltétet a pizzáról!");
                 GetPizzaDatas(connectionString);
+                UpdatePrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }
@@ -236,10 +281,7 @@ namespace Pasta_La_Vista
                 string keresendo = textBox1.Text;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    //MessageBox.Show($"textbox: {textBox1.Text}");
                     string atnez = (string)row.Cells[1].Value;
-                    //MessageBox.Show($"row: {atnez}");
-                    
                     if (keresendo.Equals(atnez))
                     {
                         MessageBox.Show("Már létezik ilyen feltét");
@@ -254,7 +296,7 @@ namespace Pasta_La_Vista
                 {
                     MySqlConnection sqlconnection = new MySqlConnection(connectionString);
                     sqlconnection.Open();
-                    string sql = $"INSERT INTO feltetek (`nev`,`ar`) VALUES ('{textBox1.Text}','{textBox3.Text}'); UPDATE `rendelesek` INNER JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid INNER JOIN meret ON rendelesek.meretszam = meret.meretszam SET rendelesek.osszar=(pizzak.feltetek_ara+meret.ar)";
+                    string sql = $"INSERT INTO feltetek (`nev`,`ar`) VALUES ('{textBox1.Text}','{textBox3.Text}');";
 
                     MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
                     MySqlDataReader insertReader2;
@@ -295,6 +337,7 @@ namespace Pasta_La_Vista
                         insertReader2 = insertCommand2.ExecuteReader();
 
                         MessageBox.Show("Sikeresen módosítottuk a feltétet!");
+                        UpdatePrices(connectionString);
                         GetFeltetDatas(connectionString);
                         insertReader2.Close();
                         sqlconnection.Close();
@@ -311,7 +354,6 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show("Valami hiba történt!");
             }
-            //Meghivni a pénz számoló cuccot
         }
 
         private void torles_Click(object sender, EventArgs e)
@@ -323,13 +365,14 @@ namespace Pasta_La_Vista
 
                 MySqlConnection sqlconnection = new MySqlConnection(connectionString);
                 sqlconnection.Open();
-                string sqlcommand = $"DELETE FROM `pizza_feltet` WHERE feltetid='{feltetid}'; DELETE FROM `feltetek` WHERE feltetid = '{feltetid}' AND feltetid='{feltetid}';UPDATE `rendelesek` INNER JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid INNER JOIN meret ON rendelesek.meretszam = meret.meretszam SET rendelesek.osszar=(pizzak.feltetek_ara+meret.ar)";
+                string sqlcommand = $"DELETE FROM `pizza_feltet` WHERE feltetid='{feltetid}'; DELETE FROM `feltetek` WHERE feltetid = '{feltetid}' AND feltetid='{feltetid}';";
                 MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
                 MySqlDataReader insertReader2;
                 insertReader2 = insertCommand2.ExecuteReader();
 
                 MessageBox.Show("Sikeresen töröltük a feltétet!");
                 GetFeltetDatas(connectionString);
+                UpdatePrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }

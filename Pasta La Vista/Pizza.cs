@@ -68,7 +68,8 @@ namespace Pasta_La_Vista
         {
             try
             {
-                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id; UPDATE `rendelesek` INNER JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid INNER JOIN meret ON rendelesek.meretszam = meret.meretszam SET rendelesek.osszar=(pizzak.feltetek_ara+meret.ar)", connectionString);
+                pFseged1.UpdateOrderPrices(connectionString);
+                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id;", connectionString);
                 MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adapter);
 
                 DataTable table = new DataTable();
@@ -100,6 +101,7 @@ namespace Pasta_La_Vista
                 throw;
             }
         }
+        
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -145,6 +147,29 @@ namespace Pasta_La_Vista
             bindingSource2.Filter = $"Pizza_Név LIKE '*{text2}*' OR Feltét_Név LIKE '*{text2}*'";
             bindingSource2.Sort = "Pizza_Név ASC";
         }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //uj rendelésszám hozzáadása
+            try
+            {
+                MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                sqlconnection.Open();
+                string sql = "INSERT INTO `rendelesek`(`rendelesszam`,`fizetve`) VALUES ('','0')";
+                MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
+                MySqlDataReader insertReader2;
+                insertReader2 = insertCommand2.ExecuteReader();
+
+                MessageBox.Show("Sikeresen módosítottuk a rendelést!");
+                GetRendelesDatas(connectionString);
+                pFseged1.UpdateOrderPrices(connectionString);
+                insertReader2.Close();
+                sqlconnection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void modositas_Click(object sender, EventArgs e)
         {
@@ -160,6 +185,7 @@ namespace Pasta_La_Vista
 
                 MessageBox.Show("Sikeresen módosítottuk a rendelést!");
                 GetRendelesDatas(connectionString);
+                pFseged1.UpdateOrderPrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }
@@ -167,7 +193,6 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show(ex.Message);
             }
-                    
         }
 
         private void torles_Click(object sender, EventArgs e)
@@ -191,9 +216,6 @@ namespace Pasta_La_Vista
             pFseged1.Visible = true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            GetRendelesDatas(connectionString);
-        }
+        
     }
 }

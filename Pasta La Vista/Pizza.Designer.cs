@@ -52,6 +52,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.pFseged1 = new Pasta_La_Vista.PFseged();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -81,7 +82,7 @@
             // 
             this.torles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.torles.ForeColor = System.Drawing.Color.Red;
-            this.torles.Location = new System.Drawing.Point(90, 386);
+            this.torles.Location = new System.Drawing.Point(93, 433);
             this.torles.Name = "torles";
             this.torles.Size = new System.Drawing.Size(115, 35);
             this.torles.TabIndex = 30;
@@ -92,7 +93,7 @@
             // modositas
             // 
             this.modositas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.modositas.Location = new System.Drawing.Point(61, 322);
+            this.modositas.Location = new System.Drawing.Point(64, 369);
             this.modositas.Name = "modositas";
             this.modositas.Size = new System.Drawing.Size(168, 58);
             this.modositas.TabIndex = 29;
@@ -263,16 +264,29 @@
             // 
             // pFseged1
             // 
-            this.pFseged1.Location = new System.Drawing.Point(0, 0);
+            this.pFseged1.Location = new System.Drawing.Point(-3, 0);
             this.pFseged1.Name = "pFseged1";
             this.pFseged1.Size = new System.Drawing.Size(885, 598);
             this.pFseged1.TabIndex = 84;
             this.pFseged1.Visible = false;
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button4.Location = new System.Drawing.Point(86, 328);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(127, 35);
+            this.button4.TabIndex = 85;
+            this.button4.Text = "Új rendelésszám";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Pizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.pFseged1);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label8);
@@ -332,5 +346,6 @@
         private ComboBox comboBox4;
         private PFseged pFseged1;
         private Button button3;
+        private Button button4;
     }
 }

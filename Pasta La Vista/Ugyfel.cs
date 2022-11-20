@@ -63,7 +63,7 @@ namespace Pasta_La_Vista
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             connection.Open();
-            string sql = $"INSERT INTO `ugyfelek`(`nev`, `cim`, `telefon`) VALUES ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}');INSERT INTO `rendelesek`(`ugyfelkod`) SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1";
+            string sql = $"INSERT INTO `ugyfelek`(`nev`, `cim`, `telefon`) VALUES ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}');INSERT INTO `rendelesek`(`ugyfelkod`) SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1;UPDATE `rendelesek` SET `fizetve`=0 WHERE ugyfelkod = (SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1);";
 
             MySqlCommand insertCommand = new MySqlCommand(sql, connection);
             MySqlDataReader insertReader = insertCommand.ExecuteReader();
