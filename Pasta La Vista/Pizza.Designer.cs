@@ -51,8 +51,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.pFseged1 = new Pasta_La_Vista.PFseged();
             this.button4 = new System.Windows.Forms.Button();
+            this.pFseged1 = new Pasta_La_Vista.PFseged();
+            this.mseged1 = new Pasta_La_Vista.Mseged();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -192,6 +193,7 @@
             this.button2.TabIndex = 43;
             this.button2.Text = "Méret módosítása";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox3
             // 
@@ -262,14 +264,6 @@
             this.comboBox4.Size = new System.Drawing.Size(236, 23);
             this.comboBox4.TabIndex = 83;
             // 
-            // pFseged1
-            // 
-            this.pFseged1.Location = new System.Drawing.Point(-3, 0);
-            this.pFseged1.Name = "pFseged1";
-            this.pFseged1.Size = new System.Drawing.Size(885, 598);
-            this.pFseged1.TabIndex = 84;
-            this.pFseged1.Visible = false;
-            // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -282,11 +276,26 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // pFseged1
+            // 
+            this.pFseged1.Location = new System.Drawing.Point(-3, 0);
+            this.pFseged1.Name = "pFseged1";
+            this.pFseged1.Size = new System.Drawing.Size(885, 598);
+            this.pFseged1.TabIndex = 86;
+            this.pFseged1.Visible = false;
+            // 
+            // mseged1
+            // 
+            this.mseged1.Location = new System.Drawing.Point(0, 0);
+            this.mseged1.Name = "mseged1";
+            this.mseged1.Size = new System.Drawing.Size(885, 598);
+            this.mseged1.TabIndex = 87;
+            // 
             // Pizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.mseged1);
             this.Controls.Add(this.pFseged1);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label8);
@@ -308,6 +317,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button4);
             this.Name = "Pizza";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Pizza_Load);
@@ -344,8 +354,9 @@
         private Label label3;
         private Label label8;
         private ComboBox comboBox4;
-        private PFseged pFseged1;
         private Button button3;
         private Button button4;
+        private PFseged pFseged1;
+        private Mseged mseged1;
     }
 }

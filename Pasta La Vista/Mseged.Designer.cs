@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mseged));
             this.label7 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.tartalomtorles = new System.Windows.Forms.Button();
+            this.torles = new System.Windows.Forms.Button();
+            this.modositas = new System.Windows.Forms.Button();
+            this.felvezetes = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -44,9 +43,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -68,65 +69,52 @@
             this.button5.TabIndex = 75;
             this.button5.Text = "Vissza";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label2
+            // tartalomtorles
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(225, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 19);
-            this.label2.TabIndex = 74;
-            this.label2.Text = "Keresés:";
+            this.tartalomtorles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tartalomtorles.Location = new System.Drawing.Point(286, 359);
+            this.tartalomtorles.Name = "tartalomtorles";
+            this.tartalomtorles.Size = new System.Drawing.Size(115, 35);
+            this.tartalomtorles.TabIndex = 72;
+            this.tartalomtorles.Text = "Tartalom törlése";
+            this.tartalomtorles.UseVisualStyleBackColor = true;
+            this.tartalomtorles.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox2
+            // torles
             // 
-            this.textBox2.Location = new System.Drawing.Point(225, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 23);
-            this.textBox2.TabIndex = 73;
+            this.torles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.torles.ForeColor = System.Drawing.Color.Red;
+            this.torles.Location = new System.Drawing.Point(286, 513);
+            this.torles.Name = "torles";
+            this.torles.Size = new System.Drawing.Size(115, 35);
+            this.torles.TabIndex = 71;
+            this.torles.Text = "Törlés";
+            this.torles.UseVisualStyleBackColor = true;
+            this.torles.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // modositas
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(286, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 35);
-            this.button1.TabIndex = 72;
-            this.button1.Text = "Tartalom törlése";
-            this.button1.UseVisualStyleBackColor = true;
+            this.modositas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.modositas.Location = new System.Drawing.Point(286, 472);
+            this.modositas.Name = "modositas";
+            this.modositas.Size = new System.Drawing.Size(115, 35);
+            this.modositas.TabIndex = 70;
+            this.modositas.Text = "Modosítás";
+            this.modositas.UseVisualStyleBackColor = true;
+            this.modositas.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // felvezetes
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(286, 513);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 35);
-            this.button2.TabIndex = 71;
-            this.button2.Text = "Törlés";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(286, 472);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(115, 35);
-            this.button3.TabIndex = 70;
-            this.button3.Text = "Modosítás";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(286, 431);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 35);
-            this.button4.TabIndex = 69;
-            this.button4.Text = "Felvezetés";
-            this.button4.UseVisualStyleBackColor = true;
+            this.felvezetes.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.felvezetes.Location = new System.Drawing.Point(286, 431);
+            this.felvezetes.Name = "felvezetes";
+            this.felvezetes.Size = new System.Drawing.Size(115, 35);
+            this.felvezetes.TabIndex = 69;
+            this.felvezetes.Text = "Felvezetés";
+            this.felvezetes.UseVisualStyleBackColor = true;
+            this.felvezetes.Click += new System.EventHandler(this.button4_Click);
             // 
             // dataGridView2
             // 
@@ -136,6 +124,8 @@
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(393, 263);
             this.dataGridView2.TabIndex = 68;
+            this.dataGridView2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView2_DataBindingComplete);
+            this.dataGridView2.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridView2_RowStateChanged);
             // 
             // pictureBox1
             // 
@@ -153,6 +143,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(236, 23);
             this.textBox3.TabIndex = 80;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label3
             // 
@@ -170,6 +161,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(236, 23);
             this.textBox1.TabIndex = 78;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -191,7 +183,7 @@
             this.pictureBox2.TabIndex = 81;
             this.pictureBox2.TabStop = false;
             // 
-            // Arak
+            // Mseged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,20 +194,19 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.tartalomtorles);
+            this.Controls.Add(this.torles);
+            this.Controls.Add(this.modositas);
+            this.Controls.Add(this.felvezetes);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Arak";
+            this.Name = "Mseged";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Arak_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,12 +215,10 @@
         #endregion
         private Label label7;
         private Button button5;
-        private Label label2;
-        private TextBox textBox2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button tartalomtorles;
+        private Button torles;
+        private Button modositas;
+        private Button felvezetes;
         private DataGridView dataGridView2;
         private PictureBox pictureBox1;
         private TextBox textBox3;
@@ -237,5 +226,6 @@
         private TextBox textBox1;
         private Label label1;
         private PictureBox pictureBox2;
+        private BindingSource bindingSource1;
     }
 }

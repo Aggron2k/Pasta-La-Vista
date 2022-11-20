@@ -27,6 +27,7 @@ namespace Pasta_La_Vista
             modositas.Enabled = true;
             torles.Enabled = true;
             pFseged1.Visible = false;
+            mseged1.Visible = false;
             GetRendelesDatas(connectionString);
         }
 
@@ -87,7 +88,7 @@ namespace Pasta_La_Vista
         {
             try
             {
-                adapter = new MySqlDataAdapter("SELECT pizzak.nev as 'Pizza_Név', feltetek.nev as 'Feltét_Név' FROM pizza_feltet INNER JOIN pizzak ON pizza_feltet.pizzaid = pizzak.pizzaid INNER JOIN feltetek ON feltetek.feltetid = pizza_feltet.feltetid ORDER BY pizzak.pizzaid", connectionString);
+                adapter = new MySqlDataAdapter("SELECT pizzak.nev as 'Pizza_Név', feltetek.nev as 'Feltét_Név',pizzak.feltetek_ara as 'Pizza_ára' FROM pizza_feltet INNER JOIN pizzak ON pizza_feltet.pizzaid = pizzak.pizzaid INNER JOIN feltetek ON feltetek.feltetid = pizza_feltet.feltetid ORDER BY pizzak.pizzaid", connectionString);
                 MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adapter);
 
                 DataTable table = new DataTable();
@@ -100,6 +101,7 @@ namespace Pasta_La_Vista
                 MessageBox.Show(Convert.ToString(ex));
                 throw;
             }
+            
         }
         
 
@@ -185,7 +187,6 @@ namespace Pasta_La_Vista
 
                 MessageBox.Show("Sikeresen módosítottuk a rendelést!");
                 GetRendelesDatas(connectionString);
-                pFseged1.UpdateOrderPrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }
@@ -214,8 +215,13 @@ namespace Pasta_La_Vista
         private void button1_Click(object sender, EventArgs e)
         {
             pFseged1.Visible = true;
+            mseged1.Visible = false;
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pFseged1.Visible = false;
+            mseged1.Visible = true;
+        }
     }
 }
