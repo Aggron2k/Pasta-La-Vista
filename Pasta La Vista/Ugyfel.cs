@@ -67,7 +67,7 @@ namespace Pasta_La_Vista
 
             MySqlCommand insertCommand = new MySqlCommand(sql, connection);
             MySqlDataReader insertReader = insertCommand.ExecuteReader();
-
+            
             MessageBox.Show("Sikeresen Ügyfél felvezetés!");
             GetDatas(connectionString);
             connection.Close();

@@ -36,7 +36,9 @@ namespace Pasta_La_Vista
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;
             GetPizzakDatas(connectionString);
-
+        }
+        private void Pizza_VisibleChanged(object sender, EventArgs e)
+        {
             adapter = new MySqlDataAdapter("SELECT rendelesszam FROM rendelesek ORDER BY rendelesszam DESC", connectionString);
             DataSet ds = new DataSet();
             adapter.Fill(ds);
@@ -56,14 +58,16 @@ namespace Pasta_La_Vista
             comboBox3.DataSource = ds3.Tables[0];
             comboBox3.ValueMember = "meretszam";
 
-            adapter4 = new MySqlDataAdapter("SELECT ugyfelkod,nev FROM `ugyfelek`", connectionString);
+            adapter4 = new MySqlDataAdapter("SELECT ugyfelkod,nev FROM `ugyfelek` ORDER BY ugyfelkod DESC", connectionString);
             DataSet ds4 = new DataSet();
             adapter4.Fill(ds4);
             comboBox4.DataSource = ds4.Tables[0];
             comboBox4.ValueMember = "nev";
             comboBox4.ValueMember = "ugyfelkod";
 
+            GetPizzakDatas(connectionString);
         }
+        
 
         public void GetRendelesDatas(string connectionString)
         {
@@ -84,7 +88,7 @@ namespace Pasta_La_Vista
                 throw;
             }
         }
-        private void GetPizzakDatas(string connectionString)
+        public void GetPizzakDatas(string connectionString)
         {
             try
             {
@@ -166,6 +170,8 @@ namespace Pasta_La_Vista
                 pFseged1.UpdateOrderPrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
+                this.Hide();
+                this.Show();
             }
             catch (MySqlException ex)
             {
@@ -210,6 +216,8 @@ namespace Pasta_La_Vista
             GetRendelesDatas(connectionString);
             insertReader2.Close();
             sqlconnection.Close();
+            this.Hide();
+            this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -222,6 +230,11 @@ namespace Pasta_La_Vista
         {
             pFseged1.Visible = false;
             mseged1.Visible = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GetPizzakDatas(connectionString);
         }
     }
 }

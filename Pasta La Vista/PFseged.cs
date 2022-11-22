@@ -51,6 +51,7 @@ namespace Pasta_La_Vista
         private void button5_Click(object sender, EventArgs e)
         {
             this.Hide();
+            
         }
 
         private void GetPizzaDatas(string connectionString)
@@ -160,6 +161,8 @@ namespace Pasta_La_Vista
                 MessageBox.Show("Sikeres pizza feltétének felvezetése!");
                 GetPizzaDatas(connectionString);
                 UpdatePrices(connectionString);
+                //rendelesek-pizzak
+                
                 insertReader2.Close();
                 sqlconnection.Close();
             }

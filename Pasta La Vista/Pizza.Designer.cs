@@ -54,6 +54,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.pFseged1 = new Pasta_La_Vista.PFseged();
             this.mseged1 = new Pasta_La_Vista.Mseged();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -278,7 +279,7 @@
             // 
             // pFseged1
             // 
-            this.pFseged1.Location = new System.Drawing.Point(-3, 0);
+            this.pFseged1.Location = new System.Drawing.Point(0, 0);
             this.pFseged1.Name = "pFseged1";
             this.pFseged1.Size = new System.Drawing.Size(885, 598);
             this.pFseged1.TabIndex = 86;
@@ -290,6 +291,16 @@
             this.mseged1.Name = "mseged1";
             this.mseged1.Size = new System.Drawing.Size(885, 598);
             this.mseged1.TabIndex = 87;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(858, 322);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(22, 23);
+            this.button5.TabIndex = 88;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Pizza
             // 
@@ -318,9 +329,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
+            this.Controls.Add(this.button5);
             this.Name = "Pizza";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Pizza_Load);
+            this.VisibleChanged += new System.EventHandler(this.Pizza_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -358,5 +371,6 @@
         private Button button4;
         private PFseged pFseged1;
         private Mseged mseged1;
+        private Button button5;
     }
 }
