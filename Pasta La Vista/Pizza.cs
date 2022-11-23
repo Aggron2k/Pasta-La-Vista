@@ -28,14 +28,21 @@ namespace Pasta_La_Vista
             torles.Enabled = true;
             pFseged1.Visible = false;
             mseged1.Visible = false;
-            GetRendelesDatas(connectionString);
         }
 
         private void Pizza_Load(object sender, EventArgs e)
         {
+
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;
+
+
+            dataGridView2.Columns[0].Width = 150;
+            dataGridView2.Columns[1].Width = 150;
+            dataGridView2.Columns[2].Width = 75;
+
             GetPizzakDatas(connectionString);
+            GetRendelesDatas(connectionString);
         }
         private void Pizza_VisibleChanged(object sender, EventArgs e)
         {
@@ -114,6 +121,14 @@ namespace Pasta_La_Vista
             if (bindingSource1.DataSource != null)
             {
                 adapter.Update((DataTable)bindingSource1.DataSource);
+                dataGridView1.Columns[0].Width = 0;
+                dataGridView1.Columns[1].Width = 150;
+                dataGridView1.Columns[2].Width = 125;
+                dataGridView1.Columns[3].Width = 40;
+                dataGridView1.Columns[4].Width = 75;
+                dataGridView1.Columns[5].Width = 50;
+                dataGridView1.Columns[6].Width = 60;
+
             }
         }
 

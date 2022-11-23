@@ -55,6 +55,7 @@
             this.pFseged1 = new Pasta_La_Vista.PFseged();
             this.mseged1 = new Pasta_La_Vista.Mseged();
             this.button5 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -202,7 +203,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(33, 240);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(236, 23);
+            this.comboBox3.Size = new System.Drawing.Size(188, 23);
             this.comboBox3.TabIndex = 75;
             // 
             // comboBox1
@@ -279,7 +280,7 @@
             // 
             // pFseged1
             // 
-            this.pFseged1.Location = new System.Drawing.Point(0, 0);
+            this.pFseged1.Location = new System.Drawing.Point(0, -3);
             this.pFseged1.Name = "pFseged1";
             this.pFseged1.Size = new System.Drawing.Size(885, 598);
             this.pFseged1.TabIndex = 86;
@@ -302,10 +303,21 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(227, 241);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 20);
+            this.label9.TabIndex = 89;
+            this.label9.Text = "cm";
+            // 
             // Pizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.mseged1);
             this.Controls.Add(this.pFseged1);
             this.Controls.Add(this.comboBox4);
@@ -372,5 +384,6 @@
         private PFseged pFseged1;
         private Mseged mseged1;
         private Button button5;
+        private Label label9;
     }
 }

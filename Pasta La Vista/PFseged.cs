@@ -30,6 +30,10 @@ namespace Pasta_La_Vista
 
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;
+
+           
+
+
             GetPizzaDatas(connectionString);
             GetFeltetDatas(connectionString);
 
@@ -133,6 +137,12 @@ namespace Pasta_La_Vista
         {
             if (bindingSource2.DataSource != null)
             {
+                dataGridView2.Columns[0].Width = 0;
+                dataGridView2.Columns[1].Width = 150;
+                dataGridView2.Columns[2].Width = 0;
+                dataGridView2.Columns[3].Width = 150;
+
+
                 adapter2.Update((DataTable)bindingSource2.DataSource);
             }
         }
@@ -141,6 +151,10 @@ namespace Pasta_La_Vista
         {
             if (bindingSource1.DataSource != null)
             {
+                dataGridView1.Columns[0].Width = 0;
+                dataGridView1.Columns[1].Width = 150;
+                dataGridView1.Columns[2].Width = 150;
+
                 adapter.Update((DataTable)bindingSource1.DataSource);
             }
         }

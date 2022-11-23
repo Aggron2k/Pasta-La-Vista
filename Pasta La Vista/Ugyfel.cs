@@ -26,6 +26,11 @@ namespace Pasta_La_Vista
             dataGridView1.DataSource = bindingSource1;
             GetDatas(connectionString);
 
+            dataGridView1.Columns[0].Width = 0;
+            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[2].Width = 200;
+            dataGridView1.Columns[3].Width = 150;
+
             felvezetes.Enabled = false;
             modositas.Enabled = false;
             torles.Enabled = false;
