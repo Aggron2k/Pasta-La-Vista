@@ -28,52 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.torles = new System.Windows.Forms.Button();
             this.modositas = new System.Windows.Forms.Button();
-            this.felvezetes = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.fizetendo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.poszt = new System.Windows.Forms.TextBox();
             this.tartalomtorles = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.fizetett = new System.Windows.Forms.ComboBox();
+            this.tipus = new System.Windows.Forms.ComboBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.pFseged1 = new Pasta_La_Vista.PFseged();
+            this.label6 = new System.Windows.Forms.Label();
+            this.kereses = new System.Windows.Forms.TextBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // torles
             // 
             this.torles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.torles.ForeColor = System.Drawing.Color.Red;
-            this.torles.Location = new System.Drawing.Point(272, 502);
+            this.torles.Location = new System.Drawing.Point(148, 502);
             this.torles.Name = "torles";
             this.torles.Size = new System.Drawing.Size(115, 35);
             this.torles.TabIndex = 30;
-            this.torles.Text = "Törlés";
+            this.torles.Text = "Fizetés törlése";
             this.torles.UseVisualStyleBackColor = true;
             // 
             // modositas
             // 
             this.modositas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.modositas.Location = new System.Drawing.Point(151, 502);
+            this.modositas.Location = new System.Drawing.Point(27, 502);
             this.modositas.Name = "modositas";
             this.modositas.Size = new System.Drawing.Size(115, 35);
             this.modositas.TabIndex = 29;
             this.modositas.Text = "Modosítás";
             this.modositas.UseVisualStyleBackColor = true;
-            // 
-            // felvezetes
-            // 
-            this.felvezetes.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.felvezetes.Location = new System.Drawing.Point(30, 502);
-            this.felvezetes.Name = "felvezetes";
-            this.felvezetes.Size = new System.Drawing.Size(115, 35);
-            this.felvezetes.TabIndex = 28;
-            this.felvezetes.Text = "Felvezetés";
-            this.felvezetes.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -85,12 +84,12 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Fízetés típus:";
             // 
-            // textBox1
+            // fizetendo
             // 
-            this.textBox1.Location = new System.Drawing.Point(27, 309);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 23);
-            this.textBox1.TabIndex = 23;
+            this.fizetendo.Location = new System.Drawing.Point(27, 309);
+            this.fizetendo.Name = "fizetendo";
+            this.fizetendo.Size = new System.Drawing.Size(236, 23);
+            this.fizetendo.TabIndex = 23;
             // 
             // label1
             // 
@@ -129,15 +128,18 @@
             this.tartalomtorles.TabIndex = 35;
             this.tartalomtorles.Text = "Tartalom törlése";
             this.tartalomtorles.UseVisualStyleBackColor = true;
+            this.tartalomtorles.Click += new System.EventHandler(this.tartalomtorles_Click);
             // 
-            // dataGridView2
+            // dataGridView1
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(473, 52);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(393, 485);
-            this.dataGridView2.TabIndex = 69;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(473, 52);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(393, 254);
+            this.dataGridView1.TabIndex = 69;
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
+            this.dataGridView1.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridView1_RowStateChanged);
             // 
             // label3
             // 
@@ -149,43 +151,86 @@
             this.label3.TabIndex = 70;
             this.label3.Text = "Fizetett-e:";
             // 
-            // comboBox1
+            // fizetett
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(27, 432);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(236, 23);
-            this.comboBox1.TabIndex = 71;
+            this.fizetett.FormattingEnabled = true;
+            this.fizetett.Location = new System.Drawing.Point(27, 432);
+            this.fizetett.Name = "fizetett";
+            this.fizetett.Size = new System.Drawing.Size(236, 23);
+            this.fizetett.TabIndex = 71;
             // 
-            // comboBox2
+            // tipus
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(27, 372);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(236, 23);
-            this.comboBox2.TabIndex = 72;
+            this.tipus.FormattingEnabled = true;
+            this.tipus.Location = new System.Drawing.Point(27, 372);
+            this.tipus.Name = "tipus";
+            this.tipus.Size = new System.Drawing.Size(236, 23);
+            this.tipus.TabIndex = 72;
+            // 
+            // pFseged1
+            // 
+            this.pFseged1.Location = new System.Drawing.Point(897, 93);
+            this.pFseged1.Name = "pFseged1";
+            this.pFseged1.Size = new System.Drawing.Size(885, 598);
+            this.pFseged1.TabIndex = 73;
+            this.pFseged1.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(679, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(115, 19);
+            this.label6.TabIndex = 75;
+            this.label6.Text = "Rendelés keresés:";
+            // 
+            // kereses
+            // 
+            this.kereses.Location = new System.Drawing.Point(679, 25);
+            this.kereses.Name = "kereses";
+            this.kereses.Size = new System.Drawing.Size(187, 23);
+            this.kereses.TabIndex = 74;
+            this.kereses.TextChanged += new System.EventHandler(this.kereses_TextChanged);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(473, 322);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 25;
+            this.dataGridView2.Size = new System.Drawing.Size(393, 260);
+            this.dataGridView2.TabIndex = 76;
+            this.dataGridView2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView2_DataBindingComplete);
             // 
             // Fizetes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.kereses);
+            this.Controls.Add(this.pFseged1);
+            this.Controls.Add(this.tipus);
+            this.Controls.Add(this.fizetett);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tartalomtorles);
             this.Controls.Add(this.poszt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.torles);
             this.Controls.Add(this.modositas);
-            this.Controls.Add(this.felvezetes);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.fizetendo);
             this.Controls.Add(this.label1);
             this.Name = "Fizetes";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Fizetes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,16 +239,21 @@
         #endregion
         private Button torles;
         private Button modositas;
-        private Button felvezetes;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox fizetendo;
         private Label label1;
         private Label label4;
         private TextBox poszt;
         private Button tartalomtorles;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridView1;
         private Label label3;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox fizetett;
+        private ComboBox tipus;
+        private BindingSource bindingSource1;
+        private PFseged pFseged1;
+        private Label label6;
+        private TextBox kereses;
+        private DataGridView dataGridView2;
+        private BindingSource bindingSource2;
     }
 }

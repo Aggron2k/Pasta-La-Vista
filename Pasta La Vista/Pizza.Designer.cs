@@ -280,7 +280,7 @@
             // 
             // pFseged1
             // 
-            this.pFseged1.Location = new System.Drawing.Point(0, -3);
+            this.pFseged1.Location = new System.Drawing.Point(858, 53);
             this.pFseged1.Name = "pFseged1";
             this.pFseged1.Size = new System.Drawing.Size(885, 598);
             this.pFseged1.TabIndex = 86;
@@ -288,7 +288,7 @@
             // 
             // mseged1
             // 
-            this.mseged1.Location = new System.Drawing.Point(0, 0);
+            this.mseged1.Location = new System.Drawing.Point(868, 351);
             this.mseged1.Name = "mseged1";
             this.mseged1.Size = new System.Drawing.Size(885, 598);
             this.mseged1.TabIndex = 87;
@@ -317,7 +317,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.mseged1);
             this.Controls.Add(this.pFseged1);
             this.Controls.Add(this.comboBox4);
@@ -342,6 +341,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
+            this.Controls.Add(this.label9);
             this.Name = "Pizza";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Pizza_Load);

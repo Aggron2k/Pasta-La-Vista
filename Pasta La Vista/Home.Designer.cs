@@ -40,6 +40,7 @@
             this.kilepes = new System.Windows.Forms.Button();
             this.ugyfel1 = new Pasta_La_Vista.Ugyfel();
             this.pizza1 = new Pasta_La_Vista.Pizza();
+            this.fizetes1 = new Pasta_La_Vista.Fizetes();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -103,7 +104,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 100);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Rendelések";
+            this.button3.Text = "Névjegy";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button4
@@ -118,6 +119,7 @@
             this.button4.TabIndex = 6;
             this.button4.Text = "Fizetés";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // kilepes
             // 
@@ -148,11 +150,19 @@
             this.pizza1.Size = new System.Drawing.Size(885, 598);
             this.pizza1.TabIndex = 9;
             // 
+            // fizetes1
+            // 
+            this.fizetes1.Location = new System.Drawing.Point(190, 0);
+            this.fizetes1.Name = "fizetes1";
+            this.fizetes1.Size = new System.Drawing.Size(885, 598);
+            this.fizetes1.TabIndex = 10;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 597);
+            this.Controls.Add(this.fizetes1);
             this.Controls.Add(this.pizza1);
             this.Controls.Add(this.ugyfel1);
             this.Controls.Add(this.kilepes);
@@ -186,5 +196,6 @@
         private Button kilepes;
         private Ugyfel ugyfel1;
         private Pizza pizza1;
+        private Fizetes fizetes1;
     }
 }
