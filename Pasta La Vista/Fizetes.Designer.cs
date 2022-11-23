@@ -116,6 +116,7 @@
             this.poszt.Location = new System.Drawing.Point(27, 52);
             this.poszt.Multiline = true;
             this.poszt.Name = "poszt";
+            this.poszt.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.poszt.Size = new System.Drawing.Size(412, 231);
             this.poszt.TabIndex = 34;
             // 
@@ -136,7 +137,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(473, 52);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(393, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(393, 485);
             this.dataGridView1.TabIndex = 69;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridView1_RowStateChanged);
@@ -197,11 +198,12 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(473, 322);
+            this.dataGridView2.Location = new System.Drawing.Point(473, 559);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(393, 260);
+            this.dataGridView2.Size = new System.Drawing.Size(393, 23);
             this.dataGridView2.TabIndex = 76;
+            this.dataGridView2.Visible = false;
             this.dataGridView2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView2_DataBindingComplete);
             // 
             // Fizetes

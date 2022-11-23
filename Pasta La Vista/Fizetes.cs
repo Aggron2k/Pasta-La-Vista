@@ -29,12 +29,13 @@ namespace Pasta_La_Vista
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;
             GetRendelesDatas(connectionString);
+            poszt.ScrollBars = ScrollBars.Vertical;
         }
         public void GetRendelesDatas(string connectionString)
         {
             try
             {
-                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id;", connectionString);
+                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id WHERE pizzak.nev IS NOT NULL;", connectionString);
                 MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adapter);
 
                 DataTable table = new DataTable();
