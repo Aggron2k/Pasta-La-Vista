@@ -39,7 +39,6 @@
             this.tartalomtorles = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.fizetett = new System.Windows.Forms.ComboBox();
             this.tipus = new System.Windows.Forms.ComboBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pFseged1 = new Pasta_La_Vista.PFseged();
@@ -47,6 +46,8 @@
             this.kereses = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.rendeles_torles = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -63,6 +64,7 @@
             this.torles.TabIndex = 30;
             this.torles.Text = "Fizetés törlése";
             this.torles.UseVisualStyleBackColor = true;
+            this.torles.Click += new System.EventHandler(this.torles_Click);
             // 
             // modositas
             // 
@@ -73,6 +75,7 @@
             this.modositas.TabIndex = 29;
             this.modositas.Text = "Modosítás";
             this.modositas.UseVisualStyleBackColor = true;
+            this.modositas.Click += new System.EventHandler(this.modositas_Click);
             // 
             // label2
             // 
@@ -152,14 +155,6 @@
             this.label3.TabIndex = 70;
             this.label3.Text = "Fizetett-e:";
             // 
-            // fizetett
-            // 
-            this.fizetett.FormattingEnabled = true;
-            this.fizetett.Location = new System.Drawing.Point(27, 432);
-            this.fizetett.Name = "fizetett";
-            this.fizetett.Size = new System.Drawing.Size(236, 23);
-            this.fizetett.TabIndex = 71;
-            // 
             // tipus
             // 
             this.tipus.FormattingEnabled = true;
@@ -206,16 +201,38 @@
             this.dataGridView2.Visible = false;
             this.dataGridView2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView2_DataBindingComplete);
             // 
+            // rendeles_torles
+            // 
+            this.rendeles_torles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rendeles_torles.ForeColor = System.Drawing.Color.Red;
+            this.rendeles_torles.Location = new System.Drawing.Point(269, 502);
+            this.rendeles_torles.Name = "rendeles_torles";
+            this.rendeles_torles.Size = new System.Drawing.Size(121, 35);
+            this.rendeles_torles.TabIndex = 77;
+            this.rendeles_torles.Text = "Rendelés törlése";
+            this.rendeles_torles.UseVisualStyleBackColor = true;
+            this.rendeles_torles.Click += new System.EventHandler(this.rendeles_torles_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(108, 415);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 78;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Fizetes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.rendeles_torles);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.kereses);
             this.Controls.Add(this.pFseged1);
             this.Controls.Add(this.tipus);
-            this.Controls.Add(this.fizetett);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tartalomtorles);
@@ -229,6 +246,7 @@
             this.Name = "Fizetes";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Fizetes_Load);
+            this.VisibleChanged += new System.EventHandler(this.Fizetes_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -249,7 +267,6 @@
         private Button tartalomtorles;
         private DataGridView dataGridView1;
         private Label label3;
-        private ComboBox fizetett;
         private ComboBox tipus;
         private BindingSource bindingSource1;
         private PFseged pFseged1;
@@ -257,5 +274,7 @@
         private TextBox kereses;
         private DataGridView dataGridView2;
         private BindingSource bindingSource2;
+        private Button rendeles_torles;
+        private CheckBox checkBox1;
     }
 }

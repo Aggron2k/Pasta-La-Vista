@@ -14,8 +14,7 @@ namespace Pasta_La_Vista
 {
     public partial class Fizetes : UserControl
     {
-        MySqlDataAdapter adapter;
-        MySqlDataAdapter adapter2;
+        MySqlDataAdapter adapter, adapter2, adapter3;
         string connectionString = "datasource=localhost;port=3306;username=root;database=pastalavista;";
 
 
@@ -31,6 +30,18 @@ namespace Pasta_La_Vista
             GetRendelesDatas(connectionString);
             poszt.ScrollBars = ScrollBars.Vertical;
         }
+        private void Fizetes_VisibleChanged(object sender, EventArgs e)
+        {
+            adapter = new MySqlDataAdapter("SELECT id,fizetestipus FROM fizetes", connectionString);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            tipus.DataSource = ds.Tables[0];
+            tipus.ValueMember = "id";
+            tipus.ValueMember = "fizetestipus";
+
+            //checkbox lekezelni aztán ugy javitani az updateket mert így biztos nem jó, hibák is vannak y see it
+        }
+
         public void GetRendelesDatas(string connectionString)
         {
             try
@@ -139,8 +150,62 @@ namespace Pasta_La_Vista
             fizetendo.Text = "";
             tipus.Text = "";
             fizetett.Text = "";
+            dataGridView1.ClearSelection();
             //gomb funckiokat megcsinálni
         }
+
+        private void modositas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                sqlconnection.Open();
+                string sql = $"UPDATE `rendelesek` SET fizetesid = {tipus.SelectedValue}, `fizetve` = '{fizetett.SelectedValue}' WHERE rendelesszam  = {dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty};";
+
+                MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
+                MySqlDataReader insertReader2;
+                insertReader2 = insertCommand2.ExecuteReader();
+
+                MessageBox.Show("Sikeresen módosítottuk a rendelést!");
+                GetRendelesDatas(connectionString);
+                insertReader2.Close();
+                sqlconnection.Close();
+                //Ha nincs kijelölve akkor azt javítani
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void torles_Click(object sender, EventArgs e)
+        {
+            //rendelés fizetés része nullázása (UPDATE)
+
+        }
+
+        private void rendeles_torles_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                sqlconnection.Open();
+                string sqlcommand = $"DELETE FROM `rendelesek` WHERE rendelesszam={dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty}";
+                MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
+                MySqlDataReader insertReader2;
+                insertReader2 = insertCommand2.ExecuteReader();
+
+
+                MessageBox.Show("Sikeresen töröltük a rendelést!");
+                GetRendelesDatas(connectionString);
+                insertReader2.Close();
+                sqlconnection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+}
 
         
     }
