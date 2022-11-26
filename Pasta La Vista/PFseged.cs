@@ -25,14 +25,9 @@ namespace Pasta_La_Vista
         }
         private void PFseged_Load(object sender, EventArgs e)
         {
-            button3.Enabled = false;
-            button2.Enabled = false;
 
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;
-
-           
-
 
             GetPizzaDatas(connectionString);
             GetFeltetDatas(connectionString);
@@ -50,6 +45,10 @@ namespace Pasta_La_Vista
             comboBox2.DataSource = ds4.Tables[0];
             comboBox2.DisplayMember = "nev";
             comboBox2.ValueMember = "feltetid";
+
+
+            button3.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -69,10 +68,14 @@ namespace Pasta_La_Vista
                 adapter2.Fill(table2);
                 bindingSource2.DataSource = table2;
             }
+            
             catch (MySqlException ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
-                throw;
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void GetFeltetDatas(string connectionString)
@@ -86,10 +89,14 @@ namespace Pasta_La_Vista
                 adapter.Fill(table);
                 bindingSource1.DataSource = table;
             }
+            
             catch (MySqlException ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
-                throw;
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         public void UpdatePrices(string connectionString)
@@ -108,10 +115,14 @@ namespace Pasta_La_Vista
                     UpdateOrderPrices(connectionString);
                 }
             }
+            
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
         public void UpdateOrderPrices(string connectionString)
@@ -126,10 +137,14 @@ namespace Pasta_La_Vista
                 MySqlDataReader insertReader2;
                 insertReader2 = insertCommand2.ExecuteReader();
             }
+            
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -180,7 +195,15 @@ namespace Pasta_La_Vista
                 insertReader2.Close();
                 sqlconnection.Close();
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
             catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -234,9 +257,17 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show("Valami hiba történt!");
             }
-            
-            
-            
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -264,7 +295,15 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show("Nincs kijelölve a törlendő feltét!");
             }
-            
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void dataGridView2_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -320,16 +359,25 @@ namespace Pasta_La_Vista
                     insertReader2 = insertCommand2.ExecuteReader();
 
                     MessageBox.Show("Sikeres feltét felvezetése!");
+                    UpdatePrices(connectionString);
+                    GetPizzaDatas(connectionString);
                     GetFeltetDatas(connectionString);
                     insertReader2.Close();
                     sqlconnection.Close();
                 }
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            //Meghivni a pénz számoló cuccot
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         
@@ -371,6 +419,14 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show("Valami hiba történt!");
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void torles_Click(object sender, EventArgs e)
@@ -388,6 +444,7 @@ namespace Pasta_La_Vista
                 insertReader2 = insertCommand2.ExecuteReader();
 
                 MessageBox.Show("Sikeresen töröltük a feltétet!");
+                GetPizzaDatas(connectionString);
                 GetFeltetDatas(connectionString);
                 UpdatePrices(connectionString);
                 insertReader2.Close();
@@ -397,12 +454,21 @@ namespace Pasta_La_Vista
             {
                 MessageBox.Show("Nincs kijelölve a törlendő feltét!");
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void tartalomtorles_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             textBox3.Text = "";
+            dataGridView1.ClearSelection();
 
 
             modositas.Enabled = false;
@@ -416,6 +482,16 @@ namespace Pasta_La_Vista
             var text = kereses.Text;
             bindingSource1.Filter = $"Convert(Feltét_ID, 'System.String') LIKE '*{text}*' OR Feltét_név LIKE '*{text}*' OR Feltét_ár LIKE '*{text}*'";
             bindingSource1.Sort = "Feltét_ID ASC";
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
+        }
+
+        private void comboBox2_DropDown(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

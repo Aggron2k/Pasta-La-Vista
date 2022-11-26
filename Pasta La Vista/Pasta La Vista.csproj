@@ -8,7 +8,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject></StartupObject>
+    <ApplicationIcon>images\emoji-icons-glossy-icons-person-icons-person-gestures-gestures-hand-italian-gesture-72dpi-forPersonalUseOnly.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="images\emoji-icons-glossy-icons-person-icons-person-gestures-gestures-hand-italian-gesture-72dpi-forPersonalUseOnly.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.30" />

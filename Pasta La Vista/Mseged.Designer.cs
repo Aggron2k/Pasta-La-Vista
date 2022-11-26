@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -159,7 +160,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(19, 362);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 23);
+            this.textBox1.Size = new System.Drawing.Size(200, 23);
             this.textBox1.TabIndex = 78;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -183,10 +184,21 @@
             this.pictureBox2.TabIndex = 81;
             this.pictureBox2.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(225, 366);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 20);
+            this.label2.TabIndex = 82;
+            this.label2.Text = "cm";
+            // 
             // Mseged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label3);
@@ -227,5 +239,6 @@
         private Label label1;
         private PictureBox pictureBox2;
         private BindingSource bindingSource1;
+        private Label label2;
     }
 }

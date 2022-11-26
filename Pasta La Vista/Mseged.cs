@@ -50,7 +50,6 @@ namespace Pasta_La_Vista
             catch (Exception ex)
             {
                 MessageBox.Show(Convert.ToString(ex));
-                throw;
             }
         }
 
@@ -62,6 +61,7 @@ namespace Pasta_La_Vista
         private void button1_Click(object sender, EventArgs e)
         {
             //tartalom törlés
+            dataGridView2.ClearSelection();
             textBox1.Text = "";
             textBox3.Text = "";
 

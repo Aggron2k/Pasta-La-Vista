@@ -81,7 +81,7 @@ namespace Pasta_La_Vista
             try
             {
                 pFseged1.UpdateOrderPrices(connectionString);
-                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id;", connectionString);
+                adapter = new MySqlDataAdapter("SELECT `rendelesszam` AS 'Rendelés_szám', ugyfelek.nev AS 'Ügyfél_név', pizzak.nev AS 'Pizza_név', meretszam AS 'Méret_szám', fizetes.fizetestipus AS 'Fizetés_típus', osszar AS 'Össz_ár', fizetve AS 'Fizetve' FROM `rendelesek` LEFT JOIN ugyfelek ON rendelesek.ugyfelkod = ugyfelek.ugyfelkod LEFT JOIN pizzak ON rendelesek.pizzaid = pizzak.pizzaid LEFT JOIN fizetes ON rendelesek.fizetesid = fizetes.id ORDER BY rendelesszam DESC;", connectionString);
                 MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adapter);
 
                 DataTable table = new DataTable();
@@ -92,7 +92,6 @@ namespace Pasta_La_Vista
             catch (Exception ex)
             {
                 MessageBox.Show(Convert.ToString(ex));
-                throw;
             }
         }
         public void GetPizzakDatas(string connectionString)
@@ -110,7 +109,6 @@ namespace Pasta_La_Vista
             catch (Exception ex)
             {
                 MessageBox.Show(Convert.ToString(ex));
-                throw;
             }
             
         }
@@ -187,7 +185,15 @@ namespace Pasta_La_Vista
                 this.Hide();
                 this.Show();
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
             catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -210,7 +216,15 @@ namespace Pasta_La_Vista
                 insertReader2.Close();
                 sqlconnection.Close();
             }
-            catch(MySqlException ex)
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -218,20 +232,36 @@ namespace Pasta_La_Vista
 
         private void torles_Click(object sender, EventArgs e)
         {
-            MySqlConnection sqlconnection = new MySqlConnection(connectionString);
-            sqlconnection.Open();
-            string sqlcommand = $"DELETE FROM `rendelesek` WHERE rendelesszam={comboBox1.SelectedValue}";
-            MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
-            MySqlDataReader insertReader2;
-            insertReader2 = insertCommand2.ExecuteReader();
+            try
+            {
+                MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                sqlconnection.Open();
+                string sqlcommand = $"DELETE FROM `rendelesek` WHERE rendelesszam={comboBox1.SelectedValue}";
+                MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
+                MySqlDataReader insertReader2;
+                insertReader2 = insertCommand2.ExecuteReader();
 
 
-            MessageBox.Show("Sikeresen töröltük a rendelést!");
-            GetRendelesDatas(connectionString);
-            insertReader2.Close();
-            sqlconnection.Close();
-            this.Hide();
-            this.Show();
+                MessageBox.Show("Sikeresen töröltük a rendelést!");
+                GetRendelesDatas(connectionString);
+                insertReader2.Close();
+                sqlconnection.Close();
+                this.Hide();
+                this.Show();
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

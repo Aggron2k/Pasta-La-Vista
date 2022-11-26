@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pizza));
             this.label6 = new System.Windows.Forms.Label();
             this.kereses = new System.Windows.Forms.TextBox();
             this.torles = new System.Windows.Forms.Button();
@@ -280,7 +281,7 @@
             // 
             // pFseged1
             // 
-            this.pFseged1.Location = new System.Drawing.Point(858, 53);
+            this.pFseged1.Location = new System.Drawing.Point(0, 0);
             this.pFseged1.Name = "pFseged1";
             this.pFseged1.Size = new System.Drawing.Size(885, 598);
             this.pFseged1.TabIndex = 86;
@@ -288,18 +289,19 @@
             // 
             // mseged1
             // 
-            this.mseged1.Location = new System.Drawing.Point(868, 351);
+            this.mseged1.Location = new System.Drawing.Point(0, 0);
             this.mseged1.Name = "mseged1";
             this.mseged1.Size = new System.Drawing.Size(885, 598);
             this.mseged1.TabIndex = 87;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(858, 322);
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button5.Location = new System.Drawing.Point(852, 322);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(22, 23);
+            this.button5.Size = new System.Drawing.Size(33, 35);
             this.button5.TabIndex = 88;
-            this.button5.Text = "button5";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 

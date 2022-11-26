@@ -49,10 +49,13 @@ namespace Pasta_La_Vista
                 bindingSource1.DataSource = table;
 
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -65,17 +68,33 @@ namespace Pasta_La_Vista
 
         private void felvezetes_Click(object sender, EventArgs e)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(connectionString);
 
-            connection.Open();
-            string sql = $"INSERT INTO `ugyfelek`(`nev`, `cim`, `telefon`) VALUES ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}');INSERT INTO `rendelesek`(`ugyfelkod`) SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1;UPDATE `rendelesek` SET `fizetve`=0 WHERE ugyfelkod = (SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1);";
+                connection.Open();
+                string sql = $"INSERT INTO `ugyfelek`(`nev`, `cim`, `telefon`) VALUES ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}');INSERT INTO `rendelesek`(`ugyfelkod`) SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1;UPDATE `rendelesek` SET `fizetve`=0 WHERE ugyfelkod = (SELECT ugyfelkod FROM `ugyfelek` ORDER BY ugyfelkod DESC LIMIT 1);";
 
-            MySqlCommand insertCommand = new MySqlCommand(sql, connection);
-            MySqlDataReader insertReader = insertCommand.ExecuteReader();
+                MySqlCommand insertCommand = new MySqlCommand(sql, connection);
+                MySqlDataReader insertReader = insertCommand.ExecuteReader();
             
-            MessageBox.Show("Sikeresen Ügyfél felvezetés!");
-            GetDatas(connectionString);
-            connection.Close();
+                MessageBox.Show("Sikeresen Ügyfél felvezetés!");
+                GetDatas(connectionString);
+                connection.Close();
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dataGridView1_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -98,6 +117,8 @@ namespace Pasta_La_Vista
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
+            dataGridView1.ClearSelection();
+
 
             modositas.Enabled = false;
             torles.Enabled = false;
@@ -106,49 +127,85 @@ namespace Pasta_La_Vista
 
         private void modositas_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in dataGridView1.SelectedRows)
+            try
             {
-                if (item.Selected)
+                foreach (DataGridViewRow item in dataGridView1.SelectedRows)
                 {
-                    int putThis = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+                    if (item.Selected)
+                    {
+                        int putThis = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
 
-                    MySqlConnection sqlconnection = new MySqlConnection(connectionString);
-                    sqlconnection.Open();
-                    string sql = $"UPDATE `ugyfelek` SET `nev`='{textBox1.Text}',`cim`='{textBox2.Text}',`telefon`='{textBox3.Text}' WHERE `ugyfelkod`={putThis}";
+                        MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                        sqlconnection.Open();
+                        string sql = $"UPDATE `ugyfelek` SET `nev`='{textBox1.Text}',`cim`='{textBox2.Text}',`telefon`='{textBox3.Text}' WHERE `ugyfelkod`={putThis}";
 
-                    MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
-                    MySqlDataReader insertReader2;
-                    insertReader2 = insertCommand2.ExecuteReader();
+                        MySqlCommand insertCommand2 = new MySqlCommand(sql, sqlconnection);
+                        MySqlDataReader insertReader2;
+                        insertReader2 = insertCommand2.ExecuteReader();
 
-                    MessageBox.Show("Sikeresen módosítottuk az ügyfelet!");
-                    GetDatas(connectionString);
-                    insertReader2.Close();
-                    sqlconnection.Close();
+                        MessageBox.Show("Sikeresen módosítottuk az ügyfelet!");
+                        GetDatas(connectionString);
+                        insertReader2.Close();
+                        sqlconnection.Close();
+                        modositas.Enabled = false;
+                        torles.Enabled = false;
+                        tartalomtorles.Enabled = false;
+                    }
                 }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void torles_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in dataGridView1.SelectedRows)
+            try
             {
-                if (item.Selected)
+                foreach (DataGridViewRow item in dataGridView1.SelectedRows)
                 {
-                    dataGridView1.Rows.RemoveAt(item.Index - 1);
-                    int deletThisId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+                    if (item.Selected)
+                    {
+                        dataGridView1.Rows.RemoveAt(item.Index - 1);
+                        int deletThisId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
 
-                    MySqlConnection sqlconnection = new MySqlConnection(connectionString);
-                    sqlconnection.Open();
-                    string sqlcommand = $"DELETE FROM `ugyfelek` WHERE ugyfelkod={deletThisId}";
-                    MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
-                    MySqlDataReader insertReader2;
-                    insertReader2 = insertCommand2.ExecuteReader();
+                        MySqlConnection sqlconnection = new MySqlConnection(connectionString);
+                        sqlconnection.Open();
+                        string sqlcommand = $"DELETE FROM `ugyfelek` WHERE ugyfelkod={deletThisId}";
+                        MySqlCommand insertCommand2 = new MySqlCommand(sqlcommand, sqlconnection);
+                        MySqlDataReader insertReader2;
+                        insertReader2 = insertCommand2.ExecuteReader();
 
 
-                    MessageBox.Show("Sikeresen töröltük az ügyfelet!");
-                    GetDatas(connectionString);
-                    insertReader2.Close();
-                    sqlconnection.Close();
+                        MessageBox.Show("Sikeresen töröltük az ügyfelet!");
+                        GetDatas(connectionString);
+                        insertReader2.Close();
+                        sqlconnection.Close();
+                        modositas.Enabled = false;
+                        torles.Enabled = false;
+                        tartalomtorles.Enabled = false;
+                    }
                 }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs kijelölve a törlendő feltét!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

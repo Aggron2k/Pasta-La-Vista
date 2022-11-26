@@ -310,6 +310,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(236, 23);
             this.comboBox1.TabIndex = 79;
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             // 
             // comboBox2
             // 
@@ -321,6 +322,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(236, 23);
             this.comboBox2.TabIndex = 80;
+            this.comboBox2.DropDown += new System.EventHandler(this.comboBox2_DropDown);
             // 
             // PFseged
             // 

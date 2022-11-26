@@ -47,6 +47,9 @@ namespace Pasta_La_Vista
             Application.Exit();
         }
 
-        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Pasta La Vista V1.0");
+        }
     }
 }
