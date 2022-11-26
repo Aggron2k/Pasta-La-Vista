@@ -44,7 +44,8 @@ namespace Pasta_La_Vista
             GetPizzakDatas(connectionString);
             GetRendelesDatas(connectionString);
         }
-        private void Pizza_VisibleChanged(object sender, EventArgs e)
+        
+        public void Pizza_VisibleChanged(object sender, EventArgs e)
         {
             adapter = new MySqlDataAdapter("SELECT rendelesszam FROM rendelesek ORDER BY rendelesszam DESC", connectionString);
             DataSet ds = new DataSet();
@@ -73,8 +74,9 @@ namespace Pasta_La_Vista
             comboBox4.ValueMember = "ugyfelkod";
 
             GetPizzakDatas(connectionString);
+            GetRendelesDatas(connectionString);
         }
-        
+
 
         public void GetRendelesDatas(string connectionString)
         {
@@ -278,7 +280,35 @@ namespace Pasta_La_Vista
 
         private void button5_Click(object sender, EventArgs e)
         {
+            adapter = new MySqlDataAdapter("SELECT rendelesszam FROM rendelesek ORDER BY rendelesszam DESC", connectionString);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            comboBox1.DataSource = ds.Tables[0];
+            comboBox1.ValueMember = "rendelesszam";
+
+            adapter2 = new MySqlDataAdapter("SELECT nev,pizzaid FROM `pizzak`", connectionString);
+            DataSet ds2 = new DataSet();
+            adapter2.Fill(ds2);
+            comboBox2.DataSource = ds2.Tables[0];
+            comboBox2.DisplayMember = "nev";
+            comboBox2.ValueMember = "pizzaid";
+
+            adapter3 = new MySqlDataAdapter("SELECT meretszam FROM `meret`", connectionString);
+            DataSet ds3 = new DataSet();
+            adapter3.Fill(ds3);
+            comboBox3.DataSource = ds3.Tables[0];
+            comboBox3.ValueMember = "meretszam";
+
+            adapter4 = new MySqlDataAdapter("SELECT ugyfelkod,nev FROM `ugyfelek` ORDER BY ugyfelkod DESC", connectionString);
+            DataSet ds4 = new DataSet();
+            adapter4.Fill(ds4);
+            comboBox4.DataSource = ds4.Tables[0];
+            comboBox4.ValueMember = "nev";
+            comboBox4.ValueMember = "ugyfelkod";
+
             GetPizzakDatas(connectionString);
+            GetRendelesDatas(connectionString);
         }
+
     }
 }

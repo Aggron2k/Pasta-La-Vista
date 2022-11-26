@@ -36,6 +36,10 @@ namespace Pasta_La_Vista
             torles.Enabled = false;
             tartalomtorles.Enabled = false;
         }
+        private void Ugyfel_VisibleChanged(object sender, EventArgs e)
+        {
+            GetDatas(connectionString);
+        }
 
         private void GetDatas(string connectionString)
         {
@@ -244,5 +248,7 @@ namespace Pasta_La_Vista
             bindingSource1.Filter = $"Ügyfél_Neve LIKE '*{text}*' OR Cím LIKE '*{text}*' OR Telefonszám LIKE '*{text}*'";
             bindingSource1.Sort = "Ügyfél_kód ASC";
         }
+
+        
     }
 }

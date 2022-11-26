@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fizetes));
             this.torles = new System.Windows.Forms.Button();
             this.modositas = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.rendeles_torles = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -222,10 +224,22 @@
             this.checkBox1.TabIndex = 78;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button5.Location = new System.Drawing.Point(412, 11);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(33, 35);
+            this.button5.TabIndex = 89;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Fizetes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.rendeles_torles);
             this.Controls.Add(this.dataGridView2);
@@ -276,5 +290,6 @@
         private BindingSource bindingSource2;
         private Button rendeles_torles;
         private CheckBox checkBox1;
+        private Button button5;
     }
 }

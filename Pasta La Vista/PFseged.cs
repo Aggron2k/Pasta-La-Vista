@@ -32,6 +32,17 @@ namespace Pasta_La_Vista
             GetPizzaDatas(connectionString);
             GetFeltetDatas(connectionString);
 
+            
+
+
+            button3.Enabled = false;
+            button2.Enabled = false;
+        }
+        private void PFseged_VisibleChanged(object sender, EventArgs e)
+        {
+            GetPizzaDatas(connectionString);
+            GetFeltetDatas(connectionString);
+
             adapter3 = new MySqlDataAdapter("SELECT nev,pizzaid FROM `pizzak`", connectionString);
             DataSet ds3 = new DataSet();
             adapter3.Fill(ds3);
@@ -45,10 +56,6 @@ namespace Pasta_La_Vista
             comboBox2.DataSource = ds4.Tables[0];
             comboBox2.DisplayMember = "nev";
             comboBox2.ValueMember = "feltetid";
-
-
-            button3.Enabled = false;
-            button2.Enabled = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -188,8 +195,8 @@ namespace Pasta_La_Vista
                 insertReader2 = insertCommand2.ExecuteReader();
 
                 MessageBox.Show("Sikeres pizza feltétének felvezetése!");
-                GetPizzaDatas(connectionString);
                 UpdatePrices(connectionString);
+                GetPizzaDatas(connectionString);
                 //rendelesek-pizzak
                 
                 insertReader2.Close();
@@ -240,8 +247,8 @@ namespace Pasta_La_Vista
                         insertReader2 = insertCommand2.ExecuteReader();
 
                         MessageBox.Show("Sikeresen módosítottuk a Pizza feltétét!");
-                        GetPizzaDatas(connectionString);
                         UpdatePrices(connectionString);
+                        GetPizzaDatas(connectionString);
                         insertReader2.Close();
                         sqlconnection.Close();
                         talalat = true;
@@ -286,8 +293,8 @@ namespace Pasta_La_Vista
                 insertReader2 = insertCommand2.ExecuteReader();
 
                 MessageBox.Show("Sikeresen töröltük a feltétet a pizzáról!");
-                GetPizzaDatas(connectionString);
                 UpdatePrices(connectionString);
+                GetPizzaDatas(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
             }
@@ -331,6 +338,7 @@ namespace Pasta_La_Vista
 
         private void felvezetes_Click(object sender, EventArgs e)
         {
+            //feltet_felvezetes
             try
             {
                 bool szabad = false;
@@ -364,6 +372,8 @@ namespace Pasta_La_Vista
                     GetFeltetDatas(connectionString);
                     insertReader2.Close();
                     sqlconnection.Close();
+                    this.Hide();
+                    this.Show();
                 }
             }
             catch (ArgumentOutOfRangeException)
@@ -384,6 +394,7 @@ namespace Pasta_La_Vista
 
         private void modositas_Click(object sender, EventArgs e)
         {
+            //mod-feltet
             try
             {
                 bool talalat = false;
@@ -407,6 +418,8 @@ namespace Pasta_La_Vista
                         insertReader2.Close();
                         sqlconnection.Close();
                         talalat = true;
+                        this.Hide();
+                        this.Show();
                     }
 
                 }
@@ -431,6 +444,7 @@ namespace Pasta_La_Vista
 
         private void torles_Click(object sender, EventArgs e)
         {
+            //feltet_torles
             try
             {
                 int feltetid = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
@@ -444,11 +458,13 @@ namespace Pasta_La_Vista
                 insertReader2 = insertCommand2.ExecuteReader();
 
                 MessageBox.Show("Sikeresen töröltük a feltétet!");
+                UpdatePrices(connectionString);
                 GetPizzaDatas(connectionString);
                 GetFeltetDatas(connectionString);
-                UpdatePrices(connectionString);
                 insertReader2.Close();
                 sqlconnection.Close();
+                this.Hide();
+                this.Show();
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -493,6 +509,8 @@ namespace Pasta_La_Vista
         {
             button2.Enabled = false;
         }
+
+        
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

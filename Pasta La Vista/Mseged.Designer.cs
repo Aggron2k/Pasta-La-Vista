@@ -215,6 +215,7 @@
             this.Name = "Mseged";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Arak_Load);
+            this.VisibleChanged += new System.EventHandler(this.Mseged_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

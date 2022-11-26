@@ -32,6 +32,8 @@ namespace Pasta_La_Vista
         }
         private void Fizetes_VisibleChanged(object sender, EventArgs e)
         {
+            GetRendelesDatas(connectionString);
+
             adapter = new MySqlDataAdapter("SELECT id,fizetestipus FROM fizetes", connectionString);
             DataSet ds = new DataSet();
             adapter.Fill(ds);
@@ -233,6 +235,11 @@ namespace Pasta_La_Vista
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GetRendelesDatas(connectionString);
         }
 
         private void rendeles_torles_Click(object sender, EventArgs e)

@@ -199,6 +199,7 @@
             this.Name = "Ugyfel";
             this.Size = new System.Drawing.Size(885, 598);
             this.Load += new System.EventHandler(this.Ugyfel_Load);
+            this.VisibleChanged += new System.EventHandler(this.Ugyfel_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);

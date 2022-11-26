@@ -35,6 +35,11 @@ namespace Pasta_La_Vista
             torles.Enabled = false;
         }
 
+        public void Mseged_VisibleChanged(object sender, EventArgs e)
+        {
+            GetPriceDatas(connectionString);
+        }
+
         private void GetPriceDatas(string connectionString)
         {
             try
@@ -56,6 +61,7 @@ namespace Pasta_La_Vista
         private void button5_Click(object sender, EventArgs e)
         {
             this.Hide();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -88,7 +94,9 @@ namespace Pasta_La_Vista
                 MessageBox.Show("Sikeresen méret felvezetés!");
                 GetPriceDatas(connectionString);
                 pFseged.UpdateOrderPrices(connectionString);
+                
                 connection.Close();
+                
             }
             catch (Exception ex)
             {
@@ -119,6 +127,7 @@ namespace Pasta_La_Vista
                         pFseged.UpdateOrderPrices(connectionString);
                         insertReader2.Close();
                         sqlconnection.Close();
+                        
                     }
                 }
             }
@@ -151,6 +160,7 @@ namespace Pasta_La_Vista
                         pFseged.UpdateOrderPrices(connectionString);
                         insertReader2.Close();
                         sqlconnection.Close();
+                        
                     }
                 }
             }
@@ -207,5 +217,6 @@ namespace Pasta_La_Vista
             
         }
 
+        
     }
 }
