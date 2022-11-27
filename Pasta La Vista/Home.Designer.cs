@@ -105,7 +105,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 100);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Törzs vásárlóink";
+            this.button3.Text = "Statisztikák";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 

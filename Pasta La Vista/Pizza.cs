@@ -309,6 +309,5 @@ namespace Pasta_La_Vista
             GetPizzakDatas(connectionString);
             GetRendelesDatas(connectionString);
         }
-
     }
 }
