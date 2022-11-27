@@ -45,6 +45,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
+            this.fizetes1 = new Pasta_La_Vista.Fizetes();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -194,10 +195,18 @@
             this.label2.TabIndex = 82;
             this.label2.Text = "cm";
             // 
+            // fizetes1
+            // 
+            this.fizetes1.Location = new System.Drawing.Point(902, 33);
+            this.fizetes1.Name = "fizetes1";
+            this.fizetes1.Size = new System.Drawing.Size(885, 598);
+            this.fizetes1.TabIndex = 83;
+            // 
             // Mseged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.fizetes1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.textBox3);
@@ -241,5 +250,6 @@
         private PictureBox pictureBox2;
         private BindingSource bindingSource1;
         private Label label2;
+        private Fizetes fizetes1;
     }
 }

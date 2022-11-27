@@ -41,6 +41,7 @@
             this.ugyfel1 = new Pasta_La_Vista.Ugyfel();
             this.pizza1 = new Pasta_La_Vista.Pizza();
             this.fizetes1 = new Pasta_La_Vista.Fizetes();
+            this.statisztika1 = new Pasta_La_Vista.Statisztika();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -104,7 +105,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 100);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Névjegy";
+            this.button3.Text = "Törzs vásárlóink";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -158,11 +159,19 @@
             this.fizetes1.Size = new System.Drawing.Size(885, 598);
             this.fizetes1.TabIndex = 10;
             // 
+            // statisztika1
+            // 
+            this.statisztika1.Location = new System.Drawing.Point(190, 0);
+            this.statisztika1.Name = "statisztika1";
+            this.statisztika1.Size = new System.Drawing.Size(885, 598);
+            this.statisztika1.TabIndex = 11;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 597);
+            this.Controls.Add(this.statisztika1);
             this.Controls.Add(this.fizetes1);
             this.Controls.Add(this.pizza1);
             this.Controls.Add(this.ugyfel1);
@@ -199,5 +208,6 @@
         private Ugyfel ugyfel1;
         private Pizza pizza1;
         private Fizetes fizetes1;
+        private Statisztika statisztika1;
     }
 }
